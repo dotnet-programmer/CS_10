@@ -6,6 +6,7 @@ public interface IOdtwarzacz
 
 	void Pauza();
 
-	void Stop() // domyślna implementacja interfejsu
-=> Console.WriteLine("Domyślna implementacja metody Stop");
+	// domyślna implementacja interfejsu
+	void Stop() 
+		=> Console.WriteLine("Domyślna implementacja metody Stop");
 }

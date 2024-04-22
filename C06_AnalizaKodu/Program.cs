@@ -15,5 +15,6 @@ public class Program
 	/// Punkt wejścia w tej aplikacji konsoli.
 	/// </summary>
 	/// <param name="args">Tablica ciągów znaków z argumentami dla aplikacji konsoli.</param>
-	public static void Main(string[] args) => Console.WriteLine("Hello, World!");
+	public static void Main(string[] args)
+		=> Console.WriteLine("Hello, World!");
 }

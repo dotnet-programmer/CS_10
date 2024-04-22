@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Microsoft.Extensions.Configuration;
 
-static double Dodaj(double a, double b) => a + b; // Celowo wprowadzony błąd!
+// Celowo wprowadzony błąd!
+static double Dodaj(double a, double b) 
+	=> a + b;
 
 double a = 4.5; // możesz też użyć słowa kluczowego var
 double b = 2.5;

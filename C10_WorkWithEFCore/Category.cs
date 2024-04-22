@@ -15,8 +15,8 @@ public class Category
 	// definiuje właściwość nawigacyjną dla powiązanych wierszy
 	public virtual ICollection<Product> Products { get; set; }
 
-	public Category() =>
-		// aby programiści mogli dodawać produkty do kategorii,
-		// musimy zainicjować właściwość nawigacyjną za pomocą pustej listy
-		this.Products = new List<Product>();
+	// aby programiści mogli dodawać produkty do kategorii,
+	// musimy zainicjować właściwość nawigacyjną za pomocą pustej listy
+	public Category() 
+		=> Products = new List<Product>();
 }

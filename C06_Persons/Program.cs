@@ -45,10 +45,10 @@ henryk.Szturchnij();
 
 Person[] osoby =
 {
-   new Person { Nazwisko = "Saniak" },
-   new Person { Nazwisko = "Janiak" },
-   new Person { Nazwisko = "Adun" },
-   new Person { Nazwisko = "Rykszak" }
+   new() { Nazwisko = "Saniak" },
+   new() { Nazwisko = "Janiak" },
+   new() { Nazwisko = "Adun" },
+   new() { Nazwisko = "Rykszak" }
 };
 
 Console.WriteLine("Początkowa lista osób:");

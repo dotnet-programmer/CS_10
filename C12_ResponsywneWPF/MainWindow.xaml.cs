@@ -1,6 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Windows;
+using Microsoft.Data.SqlClient;
 
 namespace ResponsywneWPF;
 
@@ -9,7 +9,8 @@ namespace ResponsywneWPF;
 /// </summary>
 public partial class MainWindow : Window
 {
-	public MainWindow() => InitializeComponent();
+	public MainWindow()
+		=> InitializeComponent();
 
 	//private const string connectionString =
 	//  "Data Source=AORUS\\SQLEXPRESS;" +

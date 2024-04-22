@@ -11,5 +11,6 @@ public struct WektorPrzesuniecia
 		Y = poczatkoweY;
 	}
 
-	public static WektorPrzesuniecia operator +(WektorPrzesuniecia wektor1, WektorPrzesuniecia wektor2) => new(wektor1.X + wektor2.X, wektor1.Y + wektor2.Y);
+	public static WektorPrzesuniecia operator +(WektorPrzesuniecia wektor1, WektorPrzesuniecia wektor2)
+		=> new(wektor1.X + wektor2.X, wektor1.Y + wektor2.Y);
 }

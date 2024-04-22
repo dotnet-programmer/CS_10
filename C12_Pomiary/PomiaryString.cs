@@ -4,7 +4,8 @@ public class PomiaryString
 {
 	private readonly int[] liczby;
 
-	public PomiaryString() => liczby = Enumerable.Range(start: 1, count: 20).ToArray();
+	public PomiaryString()
+		=> liczby = Enumerable.Range(start: 1, count: 20).ToArray();
 
 	[Benchmark(Baseline = true)]
 	public string TestLaczeniaCiagowZnakow()

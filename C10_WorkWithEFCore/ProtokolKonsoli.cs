@@ -7,7 +7,8 @@ namespace BibliotekaWspolna;
 public class DostawcaProtokoluKonsoli : ILoggerProvider
 {
 	// można tworzyć osobne implementacje dla różnych nazw kategorii, ale tutaj mamy tylko jedną
-	public ILogger CreateLogger(string nazwaKategorii) => new ProtokolKonsoli();
+	public ILogger CreateLogger(string nazwaKategorii)
+		=> new ProtokolKonsoli();
 
 	// jeżeli klasa protokołu używa zasobów niezarządzanych, to tutaj powinna je zwolnić
 	public void Dispose()
@@ -17,18 +18,16 @@ public class DostawcaProtokoluKonsoli : ILoggerProvider
 public class ProtokolKonsoli : ILogger
 {
 	// jeżeli klasa protokołu używa zasobów niezarządzanych, to tutaj możesz zwrócić klasę implementującą interfejs IDisposable
-	public IDisposable BeginScope<TState>(TState state) => null;
+	public IDisposable BeginScope<TState>(TState state)
+		=> null;
 
+	// aby ograniczyć ilość protokołowanych informacji, możesz tutaj filtrować według poziomu protokołu
 	public bool IsEnabled(LogLevel logLevel)
-	{
-		// aby ograniczyć ilość protokołowanych informacji, możesz tutaj filtrować według poziomu protokołu
-		return logLevel switch
+		=> logLevel switch
 		{
 			LogLevel.Trace or LogLevel.Information or LogLevel.None => false,
 			_ => true,
 		};
-		;
-	}
 
 	public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception, string> formatter)
 	{

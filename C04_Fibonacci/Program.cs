@@ -1,4 +1,9 @@
-﻿static int FibImperatywna(int pozycja) => pozycja == 1 ? 0 : pozycja == 2 ? 1 : FibImperatywna(pozycja - 1) + FibImperatywna(pozycja - 2);
+﻿static int FibImperatywna(int pozycja)
+	=> pozycja == 1
+		? 0
+		: pozycja == 2
+			? 1
+			: FibImperatywna(pozycja - 1) + FibImperatywna(pozycja - 2);
 
 static void UruchomFibImperatywna()
 {
@@ -12,13 +17,13 @@ static void UruchomFibImperatywna()
 
 UruchomFibImperatywna();
 
-static int FibFunkcyjna(int pozycja) =>
-pozycja switch
-{
-	1 => 0,
-	2 => 1,
-	_ => FibFunkcyjna(pozycja - 1) + FibFunkcyjna(pozycja - 2)
-};
+static int FibFunkcyjna(int pozycja)
+	=> pozycja switch
+	{
+		1 => 0,
+		2 => 1,
+		_ => FibFunkcyjna(pozycja - 1) + FibFunkcyjna(pozycja - 2)
+	};
 
 static void UruchomFibFunkcyjna()
 {

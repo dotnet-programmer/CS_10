@@ -2,5 +2,6 @@
 
 public class Kalkulator
 {
-	public double Dodaj(double a, double b) => a + b;
+	public double Dodaj(double a, double b)
+		=> a + b;
 }
