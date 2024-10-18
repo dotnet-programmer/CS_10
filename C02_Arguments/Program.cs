@@ -1,5 +1,7 @@
 ﻿using static System.Console;
 
+//#error version
+
 ForegroundColor = (ConsoleColor)Enum.Parse(
   enumType: typeof(ConsoleColor),
   value: args[0],
