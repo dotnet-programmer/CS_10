@@ -15,9 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C04_Debugging", "C04_Debugg
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C04_Fibonacci", "C04_Fibonacci\C04_Fibonacci.csproj", "{2BEC965B-7378-496D-9C02-9C3C7335A748}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C04_KalkulatorBiblioteka", "C04_KalkulatorBiblioteka\C04_KalkulatorBiblioteka.csproj", "{70CC739A-0A78-4683-9167-87C7210A7B9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C04_CalculatorLib", "C04_CalculatorLib\C04_CalculatorLib.csproj", "{70CC739A-0A78-4683-9167-87C7210A7B9F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C04_KalkulatorBiblioteka.Test", "C04_KalkulatorBiblioteka.Test\C04_KalkulatorBiblioteka.Test.csproj", "{F6F838F1-3224-435A-B4AB-D7380EC04A8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C04_CalculatorLib.Test", "C04_CalculatorLib.Test\C04_CalculatorLib.Test.csproj", "{F6F838F1-3224-435A-B4AB-D7380EC04A8A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C06_AnalizaKodu", "C06_AnalizaKodu\C06_AnalizaKodu.csproj", "{9F409644-0487-48A3-A7A3-04F452C0723C}"
 EndProject
