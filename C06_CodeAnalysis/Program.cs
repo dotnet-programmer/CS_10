@@ -2,7 +2,7 @@
 // (c) Helion. Wszystkie prawa zastrzeżone.
 // </copyright>
 
-namespace AnalizaKodu;
+namespace CodeAnalysis;
 
 using System;
 

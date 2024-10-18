@@ -19,11 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C04_CalculatorLib", "C04_Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C04_CalculatorLib.Test", "C04_CalculatorLib.Test\C04_CalculatorLib.Test.csproj", "{F6F838F1-3224-435A-B4AB-D7380EC04A8A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C06_AnalizaKodu", "C06_AnalizaKodu\C06_AnalizaKodu.csproj", "{9F409644-0487-48A3-A7A3-04F452C0723C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C06_CodeAnalysis", "C06_CodeAnalysis\C06_CodeAnalysis.csproj", "{9F409644-0487-48A3-A7A3-04F452C0723C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C06_Library", "C06_Library\C06_Library.csproj", "{9986BE94-5CE8-4CA1-82C2-297564B519AE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C06_ObslugaNull", "C06_ObslugaNull\C06_ObslugaNull.csproj", "{E7A21D2C-96CD-4797-BE0D-7A9A96E5CC82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C06_NullValues", "C06_NullValues\C06_NullValues.csproj", "{E7A21D2C-96CD-4797-BE0D-7A9A96E5CC82}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C06_Persons", "C06_Persons\C06_Persons.csproj", "{560A5665-D904-42AD-89DA-E0257642A3EF}"
 EndProject

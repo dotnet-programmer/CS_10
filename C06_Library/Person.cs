@@ -3,86 +3,90 @@
 public class Person : object, IComparable<Person>
 {
 	// pola
-	public string? Nazwisko; // znak ? pozwala na wartość null
+	public string? Name; // znak ? pozwala na wartość null
 
-	public DateTime DataUrodzenia;
-	public List<Person> Dzieci = new(); // język C# 9 i nowsze
+	public DateTime DateOfBirth;
+	public List<Person> Kids = []; // język C# 9 i nowsze
 
 	// metody
-	public void WypiszWKonsoli() 
-		=> Console.WriteLine($"{Nazwisko}, data urodzenia {DataUrodzenia:dddd}.");
+	public void WriteLineInConsole()
+		=> Console.WriteLine($"{Name}, data urodzenia {DateOfBirth:dddd}.");
 
 	// statyczna metoda "rozmnażania"
-	public static Person Prokreacja(Person o1, Person o2)
+	public static Person Procreation(Person o1, Person o2)
 	{
-		Person dziecko = new()
+		ArgumentNullException.ThrowIfNull(o1);
+		ArgumentNullException.ThrowIfNull(o2);
+
+		Person child = new()
 		{
-			Nazwisko = $"Dziecko osób {o1.Nazwisko} i {o2.Nazwisko}"
+			Name = $"Dziecko osób {o1.Name} i {o2.Name}"
 		};
 
-		o1.Dzieci.Add(dziecko);
-		o2.Dzieci.Add(dziecko);
+		o1.Kids.Add(child);
+		o2.Kids.Add(child);
 
-		return dziecko;
+		return child;
 	}
 
 	// "rozmnażająca" metoda obiektu
-	public Person ProkreacjaZ(Person partner) 
-		=> Prokreacja(this, partner);
+	public Person ProcreationWith(Person partner)
+		=> Procreation(this, partner);
 
 	// operator "mnożenia"
-	public static Person operator *(Person o1, Person o2) 
-		=> Prokreacja(o1, o2);
+	public static Person operator *(Person o1, Person o2)
+		=> Procreation(o1, o2);
 
 	// metoda z funkcją lokalną
-	public static int Silnia(int liczba)
+	public static int Factorial(int number)
 	{
-		return liczba < 0 ? throw new ArgumentException($"{nameof(liczba)} nie może być mniejsza od zera.") : lokalnaSilnia(liczba);
+		return number < 0
+			? throw new ArgumentException($"{nameof(number)} nie może być mniejsza od zera.")
+			: FactorialLocalMethod(number);
 
 		// funkcja lokalna
-		static int lokalnaSilnia(int lokalnaLiczba) 
-			=> lokalnaLiczba < 1 ? 1 : lokalnaLiczba * lokalnaSilnia(lokalnaLiczba - 1);
+		static int FactorialLocalMethod(int LocalNumber)
+			=> LocalNumber < 1
+				? 1
+				: LocalNumber * FactorialLocalMethod(LocalNumber - 1);
 	}
 
 	// zdarzenie
-	public event EventHandler? Krzycz;
+	public event EventHandler? ShoutOut;
 
 	// pole
-	public int PoziomZlosci;
+	public int AngerLevel;
 
 	// metoda
-	public void Szturchnij()
+	public void Hit()
 	{
-		PoziomZlosci++;
-		if (PoziomZlosci >= 3)
+		AngerLevel++;
+		if (AngerLevel >= 3)
 		{
 			//// jeżeli coś słucha zdarzenia…
-			//if (Krzycz != null)
+			//if (ShoutOut != null)
 			//{
 			//	// …to wywołaj zdarzenie
-			//	Krzycz(this, EventArgs.Empty);
+			//	ShoutOut(this, EventArgs.Empty);
 			//}
 
 			// to samo co wyżej, ale prostszy zapis
-			Krzycz?.Invoke(this, EventArgs.Empty);
+			ShoutOut?.Invoke(this, EventArgs.Empty);
 		}
 	}
 
-	public int CompareTo(Person? other) 
-		=> Nazwisko is null ? 0 : Nazwisko.CompareTo(other?.Nazwisko);
+	public int CompareTo(Person? other)
+		=> Name is null ? 0 : Name.CompareTo(other?.Name);
 
-	public override string ToString() 
-		=> $"{Nazwisko} to {base.ToString()}";
+	public override string ToString()
+		=> $"{Name} to {base.ToString()}";
 
-	public void PodrozWCzasie(DateTime kiedy)
+	public void TimeTravel(DateTime date)
 	{
-		if (kiedy <= DataUrodzenia)
+		if (date <= DateOfBirth)
 		{
-			throw new WyjatekOsoba("Jeżeli przeniesiesz się w czasie do daty wcześniejszej niż Twoja data urodzenia, to cały wszechświat eksploduje!");
+			throw new PersonException("Jeżeli przeniesiesz się w czasie do daty wcześniejszej niż Twoja data urodzenia, to cały wszechświat eksploduje!");
 		}
-		else
-		{
-			Console.WriteLine($"Witam w roku {kiedy:yyyy}!");
-		}
+		Console.WriteLine($"Witam w roku {date:yyyy}!");
 	}
 }

@@ -2,11 +2,11 @@
 
 namespace Library;
 
-public class OdtwarzaczDVD : IOdtwarzacz
+public class DvdPlayer : IPlayer
 {
-	public void Odtwarzaj()
+	public void Play()
 		=> WriteLine("Odtwarzacz DVD odtwarza.");
 
-	public void Pauza()
+	public void Pause()
 		=> WriteLine("Odtwarzacz DVD jest wstrzymany.");
 }

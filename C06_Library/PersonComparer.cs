@@ -2,26 +2,22 @@
 
 public class PersonComparer : IComparer<Person>
 {
-	public int Compare(Person? x, Person? y)
+	public int Compare(Person? person1, Person? person2)
 	{
-		if (x == null || y == null)
+		if (person1 == null || person2 == null)
 		{
 			return 0;
 		}
 
 		// porównaj długości nazwisk...
-		int wynik = x.Nazwisko.Length.CompareTo(y.Nazwisko.Length);
+		int result = person1.Name!.Length.CompareTo(person2.Name!.Length);
 
-		// …a jeżeli są równe…
-		if (wynik == 0)
+		return result switch
 		{
-			// …to posortuj alfabetycznie…
-			return x.Nazwisko.CompareTo(y.Nazwisko);
-		}
-		else
-		{
+			// …a jeżeli są równe to posortuj alfabetycznie…
+			0 => person1.Name.CompareTo(person2.Name),
 			// …poza tym sortuj według długości
-			return wynik;
-		}
+			_ => result
+		};
 	}
 }

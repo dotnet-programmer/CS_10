@@ -1,12 +1,12 @@
 ﻿namespace Library;
 
-public interface IOdtwarzacz
+public interface IPlayer
 {
-	void Odtwarzaj();
+	void Play();
 
-	void Pauza();
+	void Pause();
 
 	// domyślna implementacja interfejsu
-	void Stop() 
+	void Stop()
 		=> Console.WriteLine("Domyślna implementacja metody Stop");
 }
