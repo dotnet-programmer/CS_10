@@ -9,11 +9,6 @@ using static System.Console;
 
 WriteLine($"Używam dostawcy danych {ProjectConstants.DataProvider}.");
 
-//ZapytanieOKategorie();
-//FiltrowanieDolaczen();
-//ZapytanieOProdukty();
-//ZapytanieZLike();
-
 if (AddProduct(6, "Burgery Boba", 800M))
 {
 	WriteLine("Dodano nowy produkt.");
@@ -36,8 +31,8 @@ if (IncreaseProductPrice(startOfName: "Burg", amount: 20M))
 
 WriteProducts();
 
-int usuniete = RemoveProducts("Burg");
-WriteLine($"{usuniete} produktów zostało usuniętych.");
+int deleted = RemoveProducts("Burg");
+WriteLine($"{deleted} produktów zostało usuniętych.");
 
 WriteProducts();
 

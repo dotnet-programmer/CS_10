@@ -23,49 +23,51 @@ public class Academy : DbContext
 	{
 		// Reguły sprawdzania poprawności w płynnym API
 		modelBuilder.Entity<Student>()
-			.Property(s => s.Surname).HasMaxLength(30).IsRequired();
+			.Property(s => s.Surname)
+			.HasMaxLength(30)
+			.IsRequired();
 
 		// Wypełnienie bazy przykładowymi danymi
-		Student alicja = new()
+		Student stident1 = new()
 		{
 			StudentId = 1,
 			Name = "Alicja",
 			Surname = "Nowak"
 		};
-		Student bartek = new()
+		Student student2 = new()
 		{
 			StudentId = 2,
 			Name = "Bartek",
 			Surname = "Kowalski"
 		};
-		Student celina = new()
+		Student student3 = new()
 		{
 			StudentId = 3,
 			Name = "Celina",
 			Surname = "Poranna"
 		};
 
-		Course csharp = new()
+		Course course1 = new()
 		{
 			CourseId = 1,
 			Name = "C# 10 i .NET 6",
 		};
-		Course webdev = new()
+		Course course2 = new()
 		{
 			CourseId = 2,
 			Name = "Tworzenie stron WWW",
 		};
-		Course python = new()
+		Course course3 = new()
 		{
 			CourseId = 3,
 			Name = "Python dla początkujących",
 		};
 
 		modelBuilder.Entity<Student>()
-		  .HasData(alicja, bartek, celina);
+		  .HasData(stident1, student2, student3);
 
 		modelBuilder.Entity<Course>()
-		  .HasData(csharp, webdev, python);
+		  .HasData(course1, course2, course3);
 
 		modelBuilder.Entity<Course>()
 		  .HasMany(c => c.Students)
