@@ -1,21 +1,20 @@
 ﻿using Microsoft.Extensions.Logging; // ILoggerProvider, ILogger, LogLevel
-
 using static System.Console;
 
-namespace BibliotekaWspolna;
+namespace C10_WorkWithEFCore;
 
-public class DostawcaProtokoluKonsoli : ILoggerProvider
+public class LoggerProvider : ILoggerProvider
 {
 	// można tworzyć osobne implementacje dla różnych nazw kategorii, ale tutaj mamy tylko jedną
-	public ILogger CreateLogger(string nazwaKategorii)
-		=> new ProtokolKonsoli();
+	public ILogger CreateLogger(string categoryName)
+		=> new ConsoleLogger();
 
 	// jeżeli klasa protokołu używa zasobów niezarządzanych, to tutaj powinna je zwolnić
 	public void Dispose()
 	{ }
 }
 
-public class ProtokolKonsoli : ILogger
+public class ConsoleLogger : ILogger
 {
 	// jeżeli klasa protokołu używa zasobów niezarządzanych, to tutaj możesz zwrócić klasę implementującą interfejs IDisposable
 	public IDisposable BeginScope<TState>(TState state)

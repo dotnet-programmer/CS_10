@@ -1,9 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;  // [Column]
 
-namespace BibliotekaWspolna;
+namespace C10_WorkWithEFCore;
 
 public class Category
 {
+	// aby programiści mogli dodawać produkty do kategorii,
+	// musimy zainicjować właściwość nawigacyjną za pomocą pustej listy
+	public Category()
+		=> Products = new List<Product>();
+
 	// te właściwości odwzorowują kolumny w bazie danych
 	public int CategoryID { get; set; }
 
@@ -14,9 +19,4 @@ public class Category
 
 	// definiuje właściwość nawigacyjną dla powiązanych wierszy
 	public virtual ICollection<Product> Products { get; set; }
-
-	// aby programiści mogli dodawać produkty do kategorii,
-	// musimy zainicjować właściwość nawigacyjną za pomocą pustej listy
-	public Category() 
-		=> Products = new List<Product>();
 }

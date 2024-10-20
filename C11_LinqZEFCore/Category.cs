@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BibliotekaWspolna;
+namespace C10_WorkWithEFCore;
 
 public class Category
 {

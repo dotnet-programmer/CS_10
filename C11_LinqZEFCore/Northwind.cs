@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;  // DbContext, DbSet<T>
 
-namespace BibliotekaWspolna;
+namespace C10_WorkWithEFCore;
 
 // klasa zarządzająca połączeniem z bazą danych
 public class Northwind : DbContext

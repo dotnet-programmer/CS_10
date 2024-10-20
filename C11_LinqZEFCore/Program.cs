@@ -1,4 +1,4 @@
-﻿using BibliotekaWspolna;
+﻿using C10_WorkWithEFCore;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
 using static System.Console;

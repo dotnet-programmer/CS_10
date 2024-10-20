@@ -1,5 +1,5 @@
-﻿using BibliotekaWspolna;
-using Microsoft.EntityFrameworkCore;
+﻿using C10_WorkWithEFCore;
+using Microsoft.EntityFrameworkCore; // Include
 using Microsoft.EntityFrameworkCore.ChangeTracking; // CollectionEntry
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;  // IDbContextTransaction
@@ -7,274 +7,273 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using static System.Console;
 
-WriteLine($"Używam dostawcy danych {StaleProjektu.DostawcaDanych}.");
+WriteLine($"Używam dostawcy danych {ProjectConstants.DataProvider}.");
 
 //ZapytanieOKategorie();
 //FiltrowanieDolaczen();
 //ZapytanieOProdukty();
 //ZapytanieZLike();
 
-if (DodajProdukt(6, "Burgery Boba", 800M))
+if (AddProduct(6, "Burgery Boba", 800M))
 {
 	WriteLine("Dodano nowy produkt.");
 }
 
-if (DodajProdukt(6, "Burgery Boba 2", 700M))
+if (AddProduct(6, "Burgery Boba 2", 700M))
 {
 	WriteLine("Dodano nowy produkt.");
 }
 
-if (DodajProdukt(6, "Burgery Boba 3", 600M))
+if (AddProduct(6, "Burgery Boba 3", 600M))
 {
 	WriteLine("Dodano nowy produkt.");
 }
 
-if (ZwiekszCeneProduktu(poczatekNazwy: "Burg", kwota: 20M))
+if (IncreaseProductPrice(startOfName: "Burg", amount: 20M))
 {
 	WriteLine("Zaktualizowano cenę produktu.");
 }
 
-WypiszProdukty();
+WriteProducts();
 
-int usuniete = UsunProdukty("Burg");
+int usuniete = RemoveProducts("Burg");
 WriteLine($"{usuniete} produktów zostało usuniętych.");
 
-WypiszProdukty();
+WriteProducts();
 
-static void ZapytanieOKategorie()
+static void CategoryQuery()
 {
 	using (Northwind db = new())
 	{
-		var fabrykaProtokolu = db.GetService<ILoggerFactory>();
-		fabrykaProtokolu.AddProvider(new DostawcaProtokoluKonsoli());
+		var logger = db.GetService<ILoggerFactory>();
+		logger.AddProvider(new LoggerProvider());
 
 		WriteLine("Lista kategorii i liczba przypisanych im produktów:");
 
 		// zapytanie pobiera wszystkie kategorie i związane z nimi produkty
-		//IQueryable<Category>? kategorie = db.Categories?
+		//IQueryable<Category>? categories = db.Categories?
 		//	.Include(c => c.Products);
 
-		IQueryable<Category>? kategorie;
+		IQueryable<Category>? categories;
 		// = db.Categories;
 		//.Include(c => c.Products);
 
 		db.ChangeTracker.LazyLoadingEnabled = false;
 
 		Write("Włączyć ładowanie chętne? (T/N): ");
-		bool ladowanieChetne = (ReadKey().Key == ConsoleKey.T);
-		bool ladowanieJawne = false;
+		bool eagerLoading = (ReadKey().Key == ConsoleKey.T);
+		bool explicitLoading = false;
 		WriteLine();
 
-		if (ladowanieChetne)
+		if (eagerLoading)
 		{
-			kategorie = db.Categories.Include(c => c.Products);
+			categories = db.Categories.Include(c => c.Products);
 		}
 		else
 		{
-			kategorie = db.Categories;
+			categories = db.Categories;
 
 			Write("Włączyć ładowanie jawne? (T/N): ");
-			ladowanieJawne = (ReadKey().Key == ConsoleKey.T);
+			explicitLoading = (ReadKey().Key == ConsoleKey.T);
 			WriteLine();
 		}
 
-		if (kategorie is null)
+		if (categories is null)
 		{
 			WriteLine("Nie znaleziono żadnych kategorii.");
 			return;
 		}
 
 		// wykonaj zapytanie i przejrzyj wyniki
-		foreach (Category k in kategorie)
+		foreach (Category category in categories)
 		{
-			if (ladowanieJawne)
+			if (explicitLoading)
 			{
-				Write($"Jawnie załadować produkty z kategorii {k.CategoryName}? (T/N):");
+				Write($"Jawnie załadować produkty z kategorii {category.CategoryName}? (T/N):");
 				ConsoleKeyInfo key = ReadKey();
 				WriteLine();
 				if (key.Key == ConsoleKey.T)
 				{
-					CollectionEntry<Category, Product> produkty =
-					   db.Entry(k).Collection(c2 => c2.Products);
-					if (!produkty.IsLoaded)
+					CollectionEntry<Category, Product> products = db.Entry(category).Collection(c => c.Products);
+					if (!products.IsLoaded)
 					{
-						produkty.Load();
+						products.Load();
 					}
 				}
 			}
 
-			WriteLine($"Kategoria {k.CategoryName} ma {k.Products.Count} produktów.");
+			WriteLine($"Kategoria {category.CategoryName} ma {category.Products.Count} produktów.");
 		}
 	}
 }
 
-static void FiltrowanieDolaczen()
+static void FilteringInclude()
 {
 	using (Northwind db = new())
 	{
 		Write("Podaj minimalną liczbę sztuk w magazynie: ");
-		string sztukWMagazynie = ReadLine() ?? "10";
-		int sztuki = int.Parse(sztukWMagazynie);
+		int piecesInStock = int.Parse(ReadLine() ?? "10");
 
-		IQueryable<Category>? kategorie = db.Categories?
-		  .Include(c => c.Products.Where(p => p.WMagazynie >= sztuki));
+		IQueryable<Category>? categories = db.Categories?
+		  .Include(c => c.Products.Where(p => p.UnitsInStock >= piecesInStock));
 
-		if (kategorie is null)
+		if (categories is null)
 		{
 			WriteLine("Nie znaleziono kategorii.");
 			return;
 		}
 
-		WriteLine($"ToQueryString: {kategorie.ToQueryString()}");
+		WriteLine($"ToQueryString: {categories.ToQueryString()}");
 
-		foreach (Category k in kategorie)
+		foreach (Category category in categories)
 		{
-			WriteLine($"Kategoria {k.CategoryName} ma {k.Products.Count} produktów z przynajmniej {sztuki} sztukami w magazynie.");
-			foreach (Product p in k.Products)
+			WriteLine($"Kategoria {category.CategoryName} ma {category.Products.Count} produktów z przynajmniej {piecesInStock} sztukami w magazynie.");
+			foreach (Product product in category.Products)
 			{
-				WriteLine($" Produkt {p.ProductName}: {p.WMagazynie} sztuk");
+				WriteLine($" Produkt {product.ProductName}: {product.UnitsInStock} sztuk");
 			}
 		}
 	}
 }
 
-static void ZapytanieOProdukty()
+static void ProductsQuery()
 {
 	using (Northwind db = new())
 	{
-		var fabrykaProtokolu = db.GetService<ILoggerFactory>();
-		fabrykaProtokolu.AddProvider(new DostawcaProtokoluKonsoli());
+		var logger = db.GetService<ILoggerFactory>();
+		logger.AddProvider(new LoggerProvider());
 
 		WriteLine("Produkty kosztujące więcej niż podana cena; posortowane:");
-		string? wejscie;
-		decimal cena;
+		string? input;
+		decimal price;
 
 		do
 		{
 			Write("Podaj cenę produktu: ");
-			wejscie = ReadLine();
-		} while (!decimal.TryParse(wejscie, out cena));
+			input = ReadLine();
+		} while (!decimal.TryParse(input, out price));
 
-		IQueryable<Product>? produkty = db.Products?
+		IQueryable<Product>? products = db.Products?
 			.TagWith("Produkty filtrowane według ceny i sortowane.") // Protokołowanie z wykorzystaniem znaczników zapytań
-			.Where(produkt => produkt.Koszt > cena)
-			.OrderByDescending(produkt => produkt.Koszt);
+			.Where(p => p.Price > price)
+			.OrderByDescending(p => p.Price);
 
-		if (produkty is null)
+		if (products is null)
 		{
 			WriteLine("Nie znaleziono produktów.");
 			return;
 		}
 
-		foreach (Product produkt in produkty)
+		foreach (Product product in products)
 		{
-			WriteLine("{0}: {1} kosztuje {2:$#,##0.00}. W magazynie jest {3} sztuk.",
-			  produkt.ProductID, produkt.ProductName, produkt.Koszt, produkt.WMagazynie);
+			WriteLine($"{product.ProductID}: {product.ProductName} kosztuje {product.Price:$#,##0.00}. W magazynie jest {product.UnitsInStock} sztuk.");
 		}
 	}
 }
 
-static void ZapytanieZLike()
+static void QueryWithLike()
 {
 	using (Northwind db = new())
 	{
-		ILoggerFactory fabrykaProtokolu = db.GetService<ILoggerFactory>();
-		fabrykaProtokolu.AddProvider(new DostawcaProtokoluKonsoli());
+		ILoggerFactory logger = db.GetService<ILoggerFactory>();
+		logger.AddProvider(new LoggerProvider());
 
 		Write("Wprowadź część nazwy produktu: ");
 		string? input = ReadLine();
 
-		IQueryable<Product>? produkty = db.Products?
+		IQueryable<Product>? products = db.Products?
 		   .Where(p => EF.Functions.Like(p.ProductName, $"%{input}%"));
 
-		if (produkty is null)
+		if (products is null)
 		{
 			WriteLine("Nie znaleziono produktów.");
 			return;
 		}
 
-		foreach (Product produkt in produkty)
+		foreach (Product product in products)
 		{
 			WriteLine("{0}: w magazynie jest {1} sztuk. Produkt nie jest już wytwarzany? {2}",
-			   produkt.ProductName, produkt.WMagazynie, produkt.Discontinued);
+			   product.ProductName, product.UnitsInStock, product.Discontinued);
 		}
 	}
 }
 
-static bool DodajProdukt(int idKategorii, string nazwaProduktu, decimal? cena)
+static bool AddProduct(int categoryId, string productName, decimal? price)
 {
 	using (Northwind db = new())
 	{
-		Product nowyProdukt = new()
+		Product newProduct = new()
 		{
-			CategoryID = idKategorii,
-			ProductName = nazwaProduktu,
-			Koszt = cena
+			CategoryID = categoryId,
+			ProductName = productName,
+			Price = price
 		};
 
 		// oznacz produkt jako dodany w systemie śledzenia zmian
-		db.Products.Add(nowyProdukt);
+		db.Products.Add(newProduct);
 
 		// zapisz wszystkie zmiany w bazie
-		int zmienione = db.SaveChanges();
-		return (zmienione == 1);
+		int changed = db.SaveChanges();
+		return (changed == 1);
 	}
 }
 
-static bool ZwiekszCeneProduktu(string poczatekNazwy, decimal kwota)
+static bool IncreaseProductPrice(string startOfName, decimal amount)
 {
 	using (var db = new Northwind())
 	{
 		// pobierz pierwszy produkt, którego nazwa zaczyna się od wartości parametru nazwa
-		Product produktDoAktualizacji = db.Products.First(p => p.ProductName.StartsWith(poczatekNazwy));
+		Product productToEdit = db.Products.First(p => p.ProductName.StartsWith(startOfName));
 
-		produktDoAktualizacji.Koszt += kwota;
+		productToEdit.Price += amount;
 
-		int zmienione = db.SaveChanges();
-		return (zmienione == 1);
+		int changed = db.SaveChanges();
+		return (changed == 1);
 	}
 }
 
-static int UsunProdukty(string poczatekNazwy)
+static int RemoveProducts(string startOfName)
 {
 	using (Northwind db = new())
 	{
-		using (IDbContextTransaction t = db.Database.BeginTransaction())
+		using (IDbContextTransaction transaction = db.Database.BeginTransaction())
 		{
 			WriteLine("Transakcja uruchomiona z poziomem izolacji: {0}",
-			   arg0: t.GetDbTransaction().IsolationLevel);
+			   arg0: transaction.GetDbTransaction().IsolationLevel);
 
-			IQueryable<Product>? produkty = db.Products?.Where(p => p.ProductName.StartsWith(poczatekNazwy));
+			IQueryable<Product>? products = db.Products?.Where(p => p.ProductName.StartsWith(startOfName));
 
-			if (produkty is null)
+			if (products is null)
 			{
 				WriteLine("Nie znaleziono produktów do usunięcia.");
 				return 0;
 			}
 			else
 			{
-				db.Products.RemoveRange(produkty);
+				db.Products.RemoveRange(products);
 			}
 
-			int zmienione = db.SaveChanges();
-			t.Commit();
-			return zmienione;
+			int changed = db.SaveChanges();
+			transaction.Commit();
+			return changed;
 		}
 	}
 }
 
-static void WypiszProdukty()
+static void WriteProducts()
 {
 	using (Northwind db = new())
 	{
 		WriteLine("{0,-3} {1,-35} {2,8} {3,5} {4}",
 			"ID", "Nazwa", "Koszt", "Stan", "Nieprod.");
+		// ,-35 = wyrównanie do lewej wartości parametru w ramach kolumny o szerokości 35 znaków.
+		// ,5 = wyrównanie do prawej wartości parametru w ramach kolumny o szerokości 5 znaków.
 
-		foreach (Product pozycja in db.Products.OrderByDescending(p => p.Koszt))
+		foreach (Product product in db.Products.OrderByDescending(p => p.Price))
 		{
 			WriteLine("{0:000} {1,-35} {2,8:$#,##0.00} {3,5} {4}",
-			   pozycja.ProductID, pozycja.ProductName, pozycja.Koszt,
-			   pozycja.WMagazynie, pozycja.Discontinued);
+			   product.ProductID, product.ProductName, product.Price,
+			   product.UnitsInStock, product.Discontinued);
 		}
 	}
 }
