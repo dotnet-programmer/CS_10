@@ -31,9 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C10_UczniowieIKursy", "C10_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C10_WorkWithEFCore", "C10_WorkWithEFCore\C10_WorkWithEFCore.csproj", "{A9A7637C-CD16-40E5-B560-DDE4E61FA3AE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C11_LinqZEFCore", "C11_LinqZEFCore\C11_LinqZEFCore.csproj", "{BACEE0B0-2BD6-4996-8B43-C897F74988F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C11_LinqWithEfCore", "C11_LinqWithEfCore\C11_LinqWithEfCore.csproj", "{BACEE0B0-2BD6-4996-8B43-C897F74988F6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C11_RownolegleLinq", "C11_RownolegleLinq\C11_RownolegleLinq.csproj", "{9FBBDBEF-9585-4AD0-8510-AFB72B06CA52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C11_ParallelLinq", "C11_ParallelLinq\C11_ParallelLinq.csproj", "{9FBBDBEF-9585-4AD0-8510-AFB72B06CA52}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C12_AsynchronicznaKonsola", "C12_AsynchronicznaKonsola\C12_AsynchronicznaKonsola.csproj", "{B51DE2F5-2545-4552-9C3D-B377B375CCB2}"
 EndProject

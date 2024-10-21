@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace C10_WorkWithEFCore;
+namespace C11_LinqWithEfCore;
 
 public class Product
 {

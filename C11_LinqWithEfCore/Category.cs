@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace C10_WorkWithEFCore;
+namespace C11_LinqWithEfCore;
 
 public class Category
 {
