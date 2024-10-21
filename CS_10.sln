@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C06_NullValues", "C06_NullV
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C06_Persons", "C06_Persons\C06_Persons.csproj", "{560A5665-D904-42AD-89DA-E0257642A3EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C10_UczniowieIKursy", "C10_UczniowieIKursy\C10_UczniowieIKursy.csproj", "{BD283908-EBD0-4C10-9764-ABE8955034CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C10_StudentsAndCourses", "C10_StudentsAndCourses\C10_StudentsAndCourses.csproj", "{BD283908-EBD0-4C10-9764-ABE8955034CF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C10_WorkWithEFCore", "C10_WorkWithEFCore\C10_WorkWithEFCore.csproj", "{A9A7637C-CD16-40E5-B560-DDE4E61FA3AE}"
 EndProject
