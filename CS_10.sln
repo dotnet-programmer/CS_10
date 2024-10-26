@@ -47,7 +47,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C12_MonitoringApplication",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C12_SynchronizingAccessToResources", "C12_SynchronizingAccessToResources\C12_SynchronizingAccessToResources.csproj", "{A519B02B-B562-4168-8285-E64B030C27C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C12_AsyncEnumerable", "C12_AsyncEnumerable\C12_AsyncEnumerable.csproj", "{5A604E35-BBA1-49D0-995B-49C1E23F8E13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C12_AsyncEnumerable", "C12_AsyncEnumerable\C12_AsyncEnumerable.csproj", "{5A604E35-BBA1-49D0-995B-49C1E23F8E13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Common.EntityModels.SqlServer.Lib", "Northwind.Common.EntityModels.SqlServer.Lib\Northwind.Common.EntityModels.SqlServer.Lib.csproj", "{4A7939DB-A20A-4ECF-9DA4-2313C91C28A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Common.DataModels.Sqlite.Lib", "Northwind.Common.DataModels.Sqlite.Lib\Northwind.Common.DataModels.Sqlite.Lib.csproj", "{5313B720-2F65-4AE4-B5A0-560353C53C6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Common.DataContext.Sqlite.Lib", "Northwind.Common.DataContext.Sqlite.Lib\Northwind.Common.DataContext.Sqlite.Lib.csproj", "{41A45335-474E-415C-AF9B-04531641E16F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Common.DataContext.SqlServer.Lib", "Northwind.Common.DataContext.SqlServer.Lib\Northwind.Common.DataContext.SqlServer.Lib.csproj", "{7102E353-D4F1-4E1A-BF94-45EFF8078769}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -147,6 +155,22 @@ Global
 		{5A604E35-BBA1-49D0-995B-49C1E23F8E13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A604E35-BBA1-49D0-995B-49C1E23F8E13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A604E35-BBA1-49D0-995B-49C1E23F8E13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A7939DB-A20A-4ECF-9DA4-2313C91C28A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A7939DB-A20A-4ECF-9DA4-2313C91C28A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A7939DB-A20A-4ECF-9DA4-2313C91C28A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A7939DB-A20A-4ECF-9DA4-2313C91C28A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5313B720-2F65-4AE4-B5A0-560353C53C6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5313B720-2F65-4AE4-B5A0-560353C53C6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5313B720-2F65-4AE4-B5A0-560353C53C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5313B720-2F65-4AE4-B5A0-560353C53C6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41A45335-474E-415C-AF9B-04531641E16F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41A45335-474E-415C-AF9B-04531641E16F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41A45335-474E-415C-AF9B-04531641E16F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41A45335-474E-415C-AF9B-04531641E16F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7102E353-D4F1-4E1A-BF94-45EFF8078769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7102E353-D4F1-4E1A-BF94-45EFF8078769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7102E353-D4F1-4E1A-BF94-45EFF8078769}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7102E353-D4F1-4E1A-BF94-45EFF8078769}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
