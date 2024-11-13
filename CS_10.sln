@@ -49,15 +49,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C12_SynchronizingAccessToRe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C12_AsyncEnumerable", "C12_AsyncEnumerable\C12_AsyncEnumerable.csproj", "{5A604E35-BBA1-49D0-995B-49C1E23F8E13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Common.EntityModels.SqlServer.Lib", "Northwind.Common.EntityModels.SqlServer.Lib\Northwind.Common.EntityModels.SqlServer.Lib.csproj", "{4A7939DB-A20A-4ECF-9DA4-2313C91C28A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Common.EntityModels.SqlServer.Lib", "Northwind.Common.EntityModels.SqlServer.Lib\Northwind.Common.EntityModels.SqlServer.Lib.csproj", "{4A7939DB-A20A-4ECF-9DA4-2313C91C28A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Common.DataModels.Sqlite.Lib", "Northwind.Common.DataModels.Sqlite.Lib\Northwind.Common.DataModels.Sqlite.Lib.csproj", "{5313B720-2F65-4AE4-B5A0-560353C53C6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Common.DataModels.Sqlite.Lib", "Northwind.Common.DataModels.Sqlite.Lib\Northwind.Common.DataModels.Sqlite.Lib.csproj", "{5313B720-2F65-4AE4-B5A0-560353C53C6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Common.DataContext.Sqlite.Lib", "Northwind.Common.DataContext.Sqlite.Lib\Northwind.Common.DataContext.Sqlite.Lib.csproj", "{41A45335-474E-415C-AF9B-04531641E16F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Common.DataContext.Sqlite.Lib", "Northwind.Common.DataContext.Sqlite.Lib\Northwind.Common.DataContext.Sqlite.Lib.csproj", "{41A45335-474E-415C-AF9B-04531641E16F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Common.DataContext.SqlServer.Lib", "Northwind.Common.DataContext.SqlServer.Lib\Northwind.Common.DataContext.SqlServer.Lib.csproj", "{7102E353-D4F1-4E1A-BF94-45EFF8078769}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Common.DataContext.SqlServer.Lib", "Northwind.Common.DataContext.SqlServer.Lib\Northwind.Common.DataContext.SqlServer.Lib.csproj", "{7102E353-D4F1-4E1A-BF94-45EFF8078769}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Web", "Northwind.Web\Northwind.Web.csproj", "{519525F9-5089-42A2-9DE5-EF81FD73AD35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.Web", "Northwind.Web\Northwind.Web.csproj", "{519525F9-5089-42A2-9DE5-EF81FD73AD35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.RazorClassLibrary.Employees", "Northwind.RazorClassLibrary.Employees\Northwind.RazorClassLibrary.Employees.csproj", "{54EBCC1D-AF80-4D07-A57A-6E981CB79E3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -177,6 +179,10 @@ Global
 		{519525F9-5089-42A2-9DE5-EF81FD73AD35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{519525F9-5089-42A2-9DE5-EF81FD73AD35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{519525F9-5089-42A2-9DE5-EF81FD73AD35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54EBCC1D-AF80-4D07-A57A-6E981CB79E3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54EBCC1D-AF80-4D07-A57A-6E981CB79E3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54EBCC1D-AF80-4D07-A57A-6E981CB79E3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54EBCC1D-AF80-4D07-A57A-6E981CB79E3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

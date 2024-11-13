@@ -1,0 +1,23 @@
+﻿@page
+
+@* Importujemy przestrzeń nazw BibliotekaWspolna, aby móc skorzystać z zawartych w niej klas, takich jak Employee. *@
+@using CommonLibrary;
+
+@* mechanizmy obsługi znaczników pomocniczych, co pozwala zastosować element <partial> *@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@* Deklarujemy typ modelu dla tej strony Razor, aby móc użyć wcześniej zdefiniowanej klasy. *@
+@model Northwind.RazorClassLibrary.Employees.MyFeature.Pages.EmployeesPageModel;
+
+<div class="row">
+	<h1 class="display-2">Pracownicy</h2>
+</div>
+<div class="row">
+	@* Enumerujemy elementy właściwości Pracownicy z modelu i wypisujemy dane każdego z nich, stosując przy tym widok cząstkowy. *@
+	@foreach (var item in Model.Employees)
+	{
+		<div class="col-sm-3">
+			<partial name="_Employee" model="item" />
+		</div>
+	}
+</div>

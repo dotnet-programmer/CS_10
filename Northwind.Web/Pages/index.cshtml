@@ -1,0 +1,85 @@
+﻿@page
+
+@functions
+{
+	public string? DayOfWeek { get; set; }
+
+	public void OnGet()
+	{
+		ViewData["Title"] = "Witryna WWW firmy Northwind";
+		Model.DayOfWeek = DateTime.Now.ToString("dddd");
+	}
+}
+<div class="jumbotron">
+	<h1 class="display-3">Witaj w firmie Northwind!</h1>
+	<p class="lead">Dostarczamy produkty naszym klientom.</p>
+	<hr />
+	<p>
+		Dzisiaj jest @Model.DayOfWeek! Wśród naszych klientów znajdują się restauracje, hotele i przewoźnicy.
+	</p>
+	<p>
+		<a class="btn btn-primary" href="Suppliers">
+			Dowiedz się więcej o naszych dostawcach
+		</a>
+
+		<a class="btn btn-primary" href="Orders">
+			Sprawdź, ile mamy zamówień
+		</a>
+
+		<a class="btn btn-primary" href="MyFeature/Employees">
+			Skontaktuj się z naszymi pracownikami
+		</a>
+	</p>
+</div>
+
+
+
+@*
+@page
+
+@functions
+{
+	public string? DayOfWeek { get; set; }
+
+	public void OnGet()
+	{
+		Model.DayOfWeek = DateTime.Now.ToString("dddd");
+	}
+}
+
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+	<!-- Wymagane metaznaczniki -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1 " />
+
+	<!-- Odwołanie do narzędzia Bootstrap-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+		  rel="stylesheet"
+		  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+		  crossorigin="anonymous">
+
+	<title>Witaj ASP.NET Core!</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="display-3">Witaj w firmie Northwind!</h1>
+			<p class="lead">Dostarczamy produkty naszym klientom.</p>
+			<hr />
+			<p>Wśród naszych klientów znajdują się restauracje, hotele i przewoźnicy.</p>
+			<p>Dzisiaj jest @Model.DayOfWeek! Wśród naszych klientów znajdują się restauracje, hotele i przewoźnicy.</p>
+			<hr />
+			<p>
+				<a class="btn btn-primary"
+				   href="https://www.asp.net/">Dowiedz się więcej</a>
+			</p>
+		</div>
+	</div>
+</body>
+
+</html>
+*@

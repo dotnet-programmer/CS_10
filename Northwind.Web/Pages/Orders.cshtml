@@ -1,0 +1,18 @@
+﻿@page
+
+@using CommonLibrary
+
+@* Wstrzykiwanie zależnego serwisu na stronę Razor *@
+@inject NorthwindContext db
+
+@{
+	string tytul = "Zamowienia";
+	ViewData["Title"] = $"Firma Northwind - {tytul}";
+}
+
+<div class="row">
+	<h1 class="display-2">@tytul</h1>
+	<p>
+		W bazie danych Northwind mamy @db.Orders.Count() zamówień.
+	</p>
+</div>

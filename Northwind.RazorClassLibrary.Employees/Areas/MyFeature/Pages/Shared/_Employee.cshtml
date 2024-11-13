@@ -1,0 +1,16 @@
+﻿@*
+Zgodnie z konwencją nazwy widoków cząstkowych zaczynają się od znaku podkreślenia.
+Jeżeli widok cząstkowy zostanie umieszczony w folderze Shared, to system może go znaleźć automatycznie.
+Typ modelu dla tego widoku cząstkowego to encja Pracownik.
+Używamy tu stylów kart z biblioteki Bootstrap, aby wyświetlić informacje o poszczególnych pracownikach.
+*@
+
+@model CommonLibrary.Employee
+
+<div class="card border-dark mb-3" style="max-width: 18rem;">
+	<div class="card-header">@Model.FirstName, @Model.LastName</div>
+	<div class="card-body text-dark">
+		<h5 class="card-title">@Model.Country</h5>
+		<p class="card-text">@Model.Notes</p>
+	</div>
+</div>

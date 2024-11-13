@@ -11,7 +11,7 @@ public static class NorthwindContextExtensions
 	/// <param name="services"></param>
 	/// <param name="relativePath">Ta wartość podmienia domyślną ścieżkę ".."</param>
 	/// <returns>Kolekcja typu IServiceCollection, której można użyć do dodawania kolejnych serwisów.</returns>
-	public static IServiceCollection AddNorthwindContext(this IServiceCollection services, string relativePath = "..")
+	public static IServiceCollection AddNorthwindContextSqlite(this IServiceCollection services, string relativePath = "..")
 	{
 		string dataBasePath = Path.Combine(relativePath, "Northwind.db");
 		services.AddDbContext<NorthwindContext>(o => o.UseSqlite($"Data Source={relativePath}"));

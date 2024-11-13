@@ -1,0 +1,77 @@
+﻿@page
+
+@using CommonLibrary;
+
+@model Northwind.Web.Pages.SuppliersModel
+
+@* pomocnicze znaczniki, pozwalają na użycie w kodzie strony takich znaczników jak asp-for *@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+}
+
+@* Definiowanie formularza wstawiania nowego dostawcy *@
+<div class="row">
+	<p>Wprowadź dane nowego dostawcy:</p>
+	<form method="POST">
+		<div>
+			@* Element <input> z dołączonym znacznikiem pomocniczym asp-for umożliwia włączenie mechanizmu wiązania danych z modelem danych aktualnej strony Razor. *@
+			@* użycie asp-for, żeby powiązać właściwości CompanyName, Country i Phone zmiennej Supplier z polami tekstowymi *@
+			<input asp-for="Supplier.CompanyName" placeholder="Nazwa firmy" />
+		</div>
+		<div>
+			<input asp-for="Supplier.Country" placeholder="Kraj" />
+		</div>
+		<div>
+			<input asp-for="Supplier.Phone" placeholder="Telefon" />
+		</div>
+		@* wygeneruje żądanie HTTP POST i wyśle je do tej samej strony, podając wartości zapisane w elementach formularza *@
+		<input type="submit" />
+	</form>
+</div>
+
+<div class="row">
+	<h1 class="display-2">Dostawcy</h1>
+	<table class="table">
+		<thead class="thead-inverse">
+			<tr>
+				<th>Nazwa firmy</th>
+				<th>Kraj</th>
+				<th>Telefon</th>
+			</tr>
+		</thead>
+		<tbody>
+			@if (Model.Suppliers is not null)
+			{
+				@foreach (var item in Model.Suppliers)
+				{
+					<tr>
+						<td>@item.CompanyName</td>
+						<td>@item.Country</td>
+						<td>@item.Phone</td>
+					</tr>
+				}
+			}
+		</tbody>
+	</table>
+</div>
+
+
+
+@* <div class="row">
+	<h1 class="display-2">Dostawcy</h1>
+	<table class="table">
+		<thead class="thead-inverse">
+			<tr><th>Nazwa firmy</th></tr>
+		</thead>
+		<tbody>
+			@if (Model.Suppliers is not null)
+			{
+				@foreach (string name in Model.Suppliers)
+				{
+					<tr><td>@name</td></tr>
+				}
+			}
+		</tbody>
+	</table>
+</div> *@
