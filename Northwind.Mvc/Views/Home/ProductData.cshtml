@@ -1,0 +1,22 @@
+﻿@model CommonLibrary.Product
+
+@{
+	ViewData["Title"] = "Dane produktu - " + Model.ProductName;
+}
+
+<h2>Dane produktu</h2>
+<hr />
+<div>
+	<dl class="dl-horizontal">
+		<dt>Identyfikator</dt>
+		<dd>@Model.ProductId</dd>
+		<dt>Nazwa</dt>
+		<dd>@Model.ProductName</dd>
+		<dt>ID kategorii</dt>
+		<dd>@Model.CategoryId</dd>
+		<dt>Cena</dt>
+		<dd>@Model.UnitPrice.Value.ToString("C")</dd>
+		<dt>W magazynie</dt>
+		<dd>@Model.UnitsInStock</dd>
+	</dl>
+</div>

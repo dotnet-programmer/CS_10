@@ -1,0 +1,51 @@
+﻿@using CommonLibrary
+
+@model IEnumerable<Product>
+
+@{
+	string title = "Produkty droższe niż " + ViewData["MaxPrice"];
+	ViewData["Title"] = title;
+}
+
+<h2>@title</h2>
+
+@if (Model is null)
+{
+	<div>Nie znaleziono produktów.</div>
+}
+else
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nazwa kategorii</th>
+				<th>Nazwa dostawcy</th>
+				<th>Nazwa produktu</th>
+				<th>Cena</th>
+				<th>W magazynie</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (Product p in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => p.Category.CategoryName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => p.Supplier.CompanyName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => p.ProductName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => p.UnitPrice)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => p.UnitsInStock)
+					</td>
+				</tr>
+			}
+		<tbody>
+	</table>
+}

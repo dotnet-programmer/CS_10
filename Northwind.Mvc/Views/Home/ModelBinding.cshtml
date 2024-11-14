@@ -1,0 +1,71 @@
+﻿@* @model Item *@
+@model Northwind.Mvc.Models.HomeModelBindingViewModel
+
+@{
+	ViewData["Title"] = "Pokaz wiązania modeli";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+	Dane swojej rzeczy wpisz do poniższego formularza:
+</div>
+
+@* Jeżeli masz kilka parametrów o tej samej nazwie, to pamiętaj, 
+że w mechanizmie automatycznego wiązania modelu parametry formularza mają najwyższy priorytet, 
+a parametry zapytania mają najniższy priorytet. *@
+@* <form method="POST" action="/home/modelbinding?id=3"> *@
+@* <form method="POST" action="/home/modelbinding/2?id=3"> *@
+@*
+	<form method="POST" action="/home/modelbinding/2?id=3">
+	<input name="id" value="1" />
+	<input name="color" value="Czerwony" />
+	<input type="submit" />
+</form>
+
+@if (Model != null)
+{
+	<h2>Dane rzeczy</h2>
+	<hr />
+	<div>
+		<dl class="dl-horizontal">
+			<dt>Model.Id</dt>
+			<dd>@Model.Id</dd>
+			<dt>Model.Kolor</dt>
+			<dd>@Model.Color</dd>
+		</dl>
+	</div>
+}
+*@
+
+<form method="POST" action="/home/modelbinding/2?id=3">
+	<input name="id" value="1" />
+	<input name="color" value="Red" />
+	<input name="email" value="test@example.com" />
+	<input type="submit" />
+</form>
+
+@if (Model != null)
+{
+	<h2>Informacje o rzeczy</h2>
+	<hr />
+	<div>
+		<dl class="dl-horizontal">
+			<dt>Model.Item.Id</dt>
+			<dd>@Model.Item.Id</dd>
+			<dt>Model.Item.Color</dt>
+			<dd>@Model.Item.Color</dd>
+			<dt>Model.Item.Email</dt>
+			<dd>@Html.DisplayFor(model => model.Item.Email)</dd>
+		</dl>
+	</div>
+	@if (Model.HasErrors)
+	{
+		<div>
+			@foreach (string errorMessage in Model.ValidationErrors)
+			{
+				<div class="alert alert-danger" role="alert">@errorMessage</div>
+			}
+		</div>
+	}
+}
