@@ -4,7 +4,7 @@ public class WeatherForecast
 {
 	public static readonly string[] Summaries = new[]
 	{
-	  "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+	  "Mroźno", "Zimno", "Chłodno", "Chłodnawo", "Przyjemnie", "Ciepławo", "Ciepło", "Gorąco", "Upalnie", "Żar z nieba"
 	};
 
 	public DateTime Date { get; set; }

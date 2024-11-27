@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Northwind.Common.DataContext.SqlServer.Lib\Northwind.Common.DataContext.SqlServer.Lib.csproj" />
+    <ProjectReference Include="..\Northwind.Common\Northwind.Common.csproj" />
   </ItemGroup>
 
 </Project>

@@ -38,6 +38,13 @@ builder.Services.AddHttpClient(name: "Northwind.WebApi", configureClient: option
 	  options.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json", 1.0));
   });
 
+// instrukcja konfiguruj¹ca klienta HTTP wywo³uj¹cego serwis minimalny na porcie 5003
+builder.Services.AddHttpClient(name: "Minimal.WebApi", configureClient: options =>
+  {
+	  options.BaseAddress = new Uri("https://localhost:5003/");
+	  options.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json", 1.0));
+  });
+
 builder.Services.AddCors();
 
 // instrukcja dodaj¹ca do projektu kontrole stanu systemu, w tym kontrole kontekstu bazy danych Northwind

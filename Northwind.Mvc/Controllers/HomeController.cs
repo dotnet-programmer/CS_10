@@ -4,7 +4,7 @@ using Northwind.Mvc.Models; // ErrorViewModel
 using Microsoft.AspNetCore.Authorization;
 using CommonLibrary;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Http;
+using Northwind.Common;
 
 namespace Northwind.Mvc.Controllers;
 public class HomeController : Controller
@@ -31,7 +31,20 @@ public class HomeController : Controller
 		_logger.LogWarning("Drugie ostrze¿enie!");
 		_logger.LogInformation("Jestem metod¹ Index kontrolera HomeController.");
 
-		var model = new HomeIndexViewModel
+		try
+		{
+			HttpClient client = _httpClientFactory.CreateClient(name: "Minimal.WebApi");
+			HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: "api/weather");
+			HttpResponseMessage response = await client.SendAsync(request);
+			ViewData["weather"] = await response.Content.ReadFromJsonAsync<WeatherForecast[]>();
+		}
+		catch (Exception ex)
+		{
+			_logger.LogWarning($"The Minimal.WebApi service is not responding. Exception: {ex.Message}");
+			ViewData["weather"] = Enumerable.Empty<WeatherForecast>().ToArray();
+		}
+
+		HomeIndexViewModel model = new()
 		{
 			NumberOfVisits = (new Random()).Next(1, 1001),
 			Categories = await _northwindContext.Categories.ToListAsync(),

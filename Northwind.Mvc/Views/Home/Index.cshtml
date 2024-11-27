@@ -2,17 +2,39 @@
 Aby użyć modelu w widoku, zastosuj dyrektywę @Model (z wielką literą M). *@
 
 @using CommonLibrary
+@using Northwind.Common
 
 @model HomeIndexViewModel
 
 @{
 	ViewData["Title"] = "Strona główna";
 	string actualPosition = string.Empty;
+	WeatherForecast[]? weather = ViewData["weather"] as WeatherForecast[];
 }
 
 <div class="text-center">
 	<h1 class="display-4">Welcome</h1>
 	<p class="alert alert-primary">@DateTime.Now.ToLongTimeString()</p>
+
+	<p>
+		<h4>Pięciodniowa prognoza pogody</h4>
+		@if ((weather is null) || (!weather.Any()))
+		{
+			<div>Nie znaleziono prognozy pogody.</div>
+		}
+		else
+		{
+			<table class="table table-info">
+				<tr>
+					@foreach (WeatherForecast w in weather)
+					{
+						<td>W dniu @w.Date.ToString("ddd d MMM") będzie @w.Summary</td>
+					}
+				</tr>
+			</table>
+		}
+	</p>
+
 	<p><a asp-action="ModelBinding" asp-controller="Home">Wiązanie</a></p>
 	<p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
