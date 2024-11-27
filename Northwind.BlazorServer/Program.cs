@@ -25,6 +25,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// konfiguruje aplikacjê ASP.NET Core tak, ¿eby przyjmowa³a po³¹czenia SignalR z komponentów Blazora
+// i definiuje awaryjn¹ stronê Razora o nazwie _Host.cshtml
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 

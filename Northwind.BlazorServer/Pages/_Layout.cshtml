@@ -16,6 +16,7 @@
 <body>
     @RenderBody()
 
+	@* Element <div id="blazor-error-ui"> wyświetla informacje o błędach Blazora, które pojawiają się jako żółte paski na dole strony WWW. *@
     <div id="blazor-error-ui">
         <environment include="Staging,Production">
             An error has occurred. This application may no longer respond until reloaded.
@@ -27,6 +28,7 @@
         <a class="dismiss">🗙</a>
     </div>
 
+	@* Blok skryptów blazor.server.js zajmuje się obsługą komunikacji SignalR z serwerem hostującym komponenty. *@
     <script src="_framework/blazor.server.js"></script>
 </body>
 </html>

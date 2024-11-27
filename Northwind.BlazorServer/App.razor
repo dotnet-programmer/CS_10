@@ -1,8 +1,16 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@* Komponent Router skanuje cały zestaw podany w parametrze AppAssembly, 
+szukając w nim komponentów z dopisanym atrybutem [Route], i rejestruje dla nich osobne ścieżki URL. 
+Każdy jednostronicowy komponent może mieć wiele dyrektyw @page rejestrujących da niego różne trasy.*@
+<Router AppAssembly="@typeof(App).Assembly">
+	@* Jeżeli pasująca ścieżka zostanie znaleziona, to wykonywany jest element RouteView, 
+	który ustala domyślny układ dla komponentów na klasę MainLayout i przekazuje do komponentu parametry danych trasy. *@
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
+	@* Jeżeli nie uda się znaleźć pasującej ścieżku, to wykonywany jest element LayoutView, 
+		który rysuje wszystkie znajdujące się w nim znaczniki 
+	(w tym przypadku jest to jeden akapit informujący użytkownika, że pod tym adresem nic nie ma) w ramach układu MainLayout. *@
     <NotFound>
         <PageTitle>Not found</PageTitle>
         <LayoutView Layout="@typeof(MainLayout)">
