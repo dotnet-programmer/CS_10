@@ -4,6 +4,7 @@ using Northwind.Mvc.Models; // ErrorViewModel
 using Microsoft.AspNetCore.Authorization;
 using CommonLibrary;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Http;
 
 namespace Northwind.Mvc.Controllers;
 public class HomeController : Controller
@@ -12,12 +13,14 @@ public class HomeController : Controller
 	private readonly ILogger<HomeController> _logger;
 
 	private readonly NorthwindContext _northwindContext;
+	private readonly IHttpClientFactory _httpClientFactory;
 
 	// Okreœlenie w konstruktorze klasy serwisów wymaganych przez kontroler w celu osi¹gniêcia poprawnego stanu, który umo¿liwia mu normaln¹ pracê.
-	public HomeController(ILogger<HomeController> logger, NorthwindContext northwindContext)
+	public HomeController(ILogger<HomeController> logger, NorthwindContext context, IHttpClientFactory clientFactory)
 	{
 		_logger = logger;
-		_northwindContext = northwindContext;
+		_northwindContext = context;
+		_httpClientFactory = clientFactory;
 	}
 
 	// Wszystkie trzy metody akcji wywo³uj¹ metodê View() i zwracaj¹ otrzymany od niej wynik typu IActionResult jako odpowiedŸ dla klienta.
@@ -134,5 +137,28 @@ public class HomeController : Controller
 
 		ViewData["MaxPrice"] = price.Value.ToString("C");
 		return View(model); // pass model to view
+	}
+
+	// Wywo³uje serwis Northwind i pobiera z niego listê klientów, a potem przekazuje j¹ do widoku
+	public async Task<IActionResult> Customers(string country)
+	{
+		string uri;
+
+		if (string.IsNullOrEmpty(country))
+		{
+			ViewData["Title"] = "Klienci z ca³ego œwiata";
+			uri = "api/customers/";
+		}
+		else
+		{
+			ViewData["Title"] = $"Klienci z kraju {country}";
+			uri = $"api/customers/?country={country}";
+		}
+
+		HttpClient client = _httpClientFactory.CreateClient(name: "Northwind.WebApi");
+		HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: uri);
+		HttpResponseMessage response = await client.SendAsync(request);
+		IEnumerable<Customer>? model = await response.Content.ReadFromJsonAsync<IEnumerable<Customer>>();
+		return View(model);
 	}
 }

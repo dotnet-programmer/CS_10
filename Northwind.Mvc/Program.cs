@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity; // IdentityUser
 using Microsoft.EntityFrameworkCore; // UseSqlServer, UseSqlite
 using Northwind.Mvc.Data; // ApplicationDbContext
+using System.Net.Http.Headers; // MediaTypeWithQualityHeaderValue
 using CommonLibrary;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,9 +29,30 @@ builder.Services.AddControllersWithViews();
 string? sqlServerConnection = builder.Configuration.GetConnectionString("NorthwindConnection");
 builder.Services.AddNorthwindContextSqlServer(sqlServerConnection);
 
+// instrukcja u¿ywaj¹ca klasê HttpClientFactory w po³¹czeniu z nazw¹ klienta,
+// za pomoc¹ której bêd¹ wykonywane wywo³ania serwisu Northwind Web API poprzez protokó³ HTTPS na porcie 5002.
+// Wybrano te¿ format JSON jako domyœlny format odpowiedzi
+builder.Services.AddHttpClient(name: "Northwind.WebApi", configureClient: options =>
+  {
+	  options.BaseAddress = new Uri("https://localhost:5002/");
+	  options.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json", 1.0));
+  });
+
+builder.Services.AddCors();
+
+// instrukcja dodaj¹ca do projektu kontrole stanu systemu, w tym kontrole kontekstu bazy danych Northwind
+builder.Services.AddHealthChecks().AddDbContextCheck<NorthwindContext>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline. (Konfigurowanie potoku obs³ugi ¿¹dañ HTTP)
+
+app.UseCors(configurePolicy: options =>
+{
+	options.WithMethods("GET", "POST", "PUT", "DELETE");
+	options.WithOrigins("https://localhost:5001"); // umo¿liwia obs³ugê ¿¹dañ od klienta MVC
+});
+
 if (app.Environment.IsDevelopment())
 {
 	app.UseMigrationsEndPoint();
@@ -53,5 +75,7 @@ app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+app.UseHealthChecks(path: "/howdoyoufeel");
 
 app.Run();

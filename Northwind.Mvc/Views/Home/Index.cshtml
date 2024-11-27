@@ -17,6 +17,12 @@ Aby użyć modelu w widoku, zastosuj dyrektywę @Model (z wielką literą M). *@
 	<p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
+<h3>Pobierz listę klientów z bazy</h3>
+<form asp-action="Customers" method="get">
+	<input name="country" placeholder="Wpisz nazwę kraju" />
+	<input type="submit" />
+</form>
+
 @if (Model is not null)
 {
 	<div id="categories" class="carousel slide" data-ride="carousel" data-interval="3000" data-keyboard="true">
