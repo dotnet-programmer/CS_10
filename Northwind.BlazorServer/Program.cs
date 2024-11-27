@@ -9,6 +9,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
+//builder.Services.AddTransient<INorthwindService, NorthwindService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

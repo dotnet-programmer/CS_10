@@ -24,6 +24,18 @@
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
             </NavLink>
         </div>
+		<div class="nav-item px-3">
+			@* Aby algorytm dopasowujący zawsze dopasowywał całą ścieżkę, 
+				należy w elemencie NavLink przypisać wartość NavLinkMatch.All do atrybutu Match *@
+			<NavLink class="nav-link" href="customers" Match="NavLinkMatch.All">
+				<span class="oi oi-people" aria-hidden="true"></span> Klienci ze świata
+			</NavLink>
+		</div>
+		<div class="nav-item px-3">
+			<NavLink class="nav-link" href="customers/Poland">
+				<span class="oi oi-people" aria-hidden="true"></span> Klienci z Polski
+			</NavLink>
+		</div>
     </nav>
 </div>
 

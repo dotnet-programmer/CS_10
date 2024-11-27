@@ -1,0 +1,12 @@
+﻿@* dodanie @page powoduje przekształcanie komponentu w routowalny komponent stronicowy *@
+@page "/customers/{country?}"
+
+@* dyrektywa wstrzykująca serwis Northwind *@
+@* @inject INorthwindService service *@
+
+<h3>Klienci@(string.IsNullOrWhiteSpace(Country) ? " z całego świata" : " z kraju " + Country)</h3>
+
+@code {
+	[Parameter]
+	public string? Country { get; set; }
+}
