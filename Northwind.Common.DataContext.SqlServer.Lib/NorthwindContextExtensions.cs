@@ -13,7 +13,7 @@ public static class NorthwindContextExtensions
 	/// <returns>Kolekcja typu IServiceCollection, której można użyć do dodawania kolejnych serwisów.</returns>
 	public static IServiceCollection AddNorthwindContextSqlServer(
 		this IServiceCollection services,
-		string connection = "Server=(local)\\SQLEXPRESS;Database=Northwind;User Id=DBUser;Password=1234;TrustServerCertificate=True;")
+		string connection = "Server=(local)\\SQLEXPRESS;Database=Northwind;User Id=DBUser;Password=;TrustServerCertificate=True;")
 	{
 		services.AddDbContext<NorthwindContext>(options => options.UseSqlServer(connection));
 		return services;

@@ -68,7 +68,7 @@ public partial class NorthwindContext : DbContext
 	public virtual DbSet<Territory> Territories { get; set; }
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-		=> optionsBuilder.UseSqlServer("Server=(local)\\SQLEXPRESS;Database=Northwind;User Id=DBUser;Password=1234;TrustServerCertificate=True;");
+		=> optionsBuilder.UseSqlServer("Server=(local)\\SQLEXPRESS;Database=Northwind;User Id=DBUser;Password=;TrustServerCertificate=True;");
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
